@@ -47,6 +47,37 @@ if not NAMES.exists():
 
 # }}}
 
+# [[ Business logic ]] {{{
+
+names_list = []
+
+# Read the file by lines
+with open(NAMES, "r") as f:
+    names_list = [a.rstrip() for a in f.readlines()]
+
+# If delimiter set, concatenate on newlines, then split on delimiter
+if DELIMITER == "\n":
+    names_list = "\n".join(names_list).split(DELIMITER)
+
+turn, names_len = -1, len(names_list)
+
+
+def forward():
+    global turn
+    turn = (turn + 1) % names_len
+
+    name.set(names_list[turn])
+
+
+def backward():
+    global turn
+    turn = (turn - 1 + names_len) % names_len
+
+    name.set(names_list[turn])
+
+
+# }}}
+
 # [[ GUI Initialization ]] {{{1
 
 root = tkinter.Tk()
@@ -96,15 +127,9 @@ style.configure(
 frame = ttk.Frame()
 
 # Create button and apply style
-button_next = ttk.Button(
-    frame,
-    text="NEXT",
-)
+button_next = ttk.Button(frame, text="NEXT", command=forward)
 
-button_prev = ttk.Button(
-    frame,
-    text="PREVIOUS",
-)
+button_prev = ttk.Button(frame, text="PREVIOUS", command=backward)
 
 button_next.pack(side="right", padx=25)
 button_prev.pack(side="left", padx=25)
@@ -114,14 +139,17 @@ name.set("START")
 label = ttk.Label(root, textvariable=name)
 
 
-label.pack(expand=1, padx=50, pady=75)
-frame.pack(expand=1, side="bottom", pady=50)
+label.pack(expand=1, padx=100, pady=75)
+frame.pack(expand=1, side="bottom", padx=300, pady=50)
 
 # }}}1
 
 # Close program on Q press
 root.bind("<Key-q>", lambda _: root.destroy())
 
-# }}}1
+# Navigation keybinds
+root.bind("<Key-Return>", lambda _: forward())
+root.bind("<Key-space>", lambda _: forward())
+root.bind("<Key-BackSpace>", lambda _: backward())
 
 root.mainloop()
