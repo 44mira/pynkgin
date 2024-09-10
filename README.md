@@ -1,6 +1,8 @@
+![image](https://github.com/user-attachments/assets/59a426c2-d8ab-4924-9c91-bdcaca90078a)
+
 # pynkgin
 
-### A GUI program that cycles through a circular buffer of names.
+> A simple GUI program that cycles through a circular buffer of names.
 
 The queue can be moved: 
 - forward using the 'NEXT' button or pressing 'Enter' or 'Space' keys.
@@ -19,3 +21,6 @@ options:
   -d DELIMITER, --delimiter DELIMITER
                         The delimiter that separates the names in the file. Defaults to '\n.'
 ```
+
+### Preview:
+![image](https://github.com/user-attachments/assets/97906f7c-8922-40c0-8582-e1ad4f8b2efe)
