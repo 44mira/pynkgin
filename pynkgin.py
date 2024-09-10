@@ -6,8 +6,6 @@ import argparse
 from pathlib import Path
 from textwrap import dedent
 
-import sv_ttk
-
 # [[ Command line flags ]] {{{
 
 parser = argparse.ArgumentParser(
@@ -53,7 +51,6 @@ root = tkinter.Tk()
 button = ttk.Button(root, text="Click me!")
 button.pack(expand=1)
 
-sv_ttk.set_theme("dark")
 
 # Close program on Q press
 root.bind("<Key>", lambda event: event.keysym == "q" and root.destroy())
