@@ -48,6 +48,7 @@ if not NAMES.exists():
 
 root = tkinter.Tk()
 root.title(f"pynkgin: {NAMES}")
+root.resizable(False, False)
 
 # [[ Style Definitions ]] {{{2
 
@@ -56,9 +57,10 @@ style = ttk.Style()
 # Button with conditional rendering
 style.configure(
     "TButton",
-    font="Arial 42",
+    font="Arial 36",
     relief="flat",
     borderwidth=3,
+    padding=16,
     background="#c5b4ac",
     foreground="#070605",
 )
@@ -80,21 +82,39 @@ style.configure(
     foreground="#f0ecea",
 )
 
+# Frame
+style.configure(
+    "TFrame",
+    background="#27221A",
+)
+
 # }}}2
 
+frame = ttk.Frame()
+
 # Create button and apply style
-button = ttk.Button(
-    root,
+button_next = ttk.Button(
+    frame,
     text="NEXT",
-    padding=5,
 )
+
+button_prev = ttk.Button(
+    frame,
+    text="PREVIOUS",
+)
+
+button_next.pack(side="right", padx=25)
+button_prev.pack(side="left", padx=25)
 
 name = tkinter.StringVar()
 name.set("START")
 label = ttk.Label(root, textvariable=name)
 
-label.pack(expand=1)
-button.pack(side="bottom", padx=25, pady=25)
+
+label.pack(expand=1, padx=50, pady=75)
+frame.pack(expand=1, side="bottom", pady=50)
+
+# }}}1
 
 # Close program on Q press
 root.bind("<Key-q>", lambda _: root.destroy())
