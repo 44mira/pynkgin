@@ -3,6 +3,7 @@
 import tkinter
 from tkinter import ttk
 import argparse
+from pathlib import Path
 from textwrap import dedent
 
 import sv_ttk
@@ -38,6 +39,10 @@ parser.add_argument(
 
 # Read input flags
 args = parser.parse_args()
-NAMES, DELIMITER = args.names, args.delimiter
+NAMES, DELIMITER = Path(args.names), args.delimiter
+
+if not NAMES.exists():
+    raise FileNotFoundError("File does not exist at the specified path.")
 
 # }}}
+
