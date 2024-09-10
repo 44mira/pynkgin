@@ -44,17 +44,61 @@ if not NAMES.exists():
 
 # }}}
 
-# [[ GUI Initialization ]] {{{
+# [[ GUI Initialization ]] {{{1
 
 root = tkinter.Tk()
+root.title(f"pynkgin: {NAMES}")
 
-button = ttk.Button(root, text="Click me!")
-button.pack(expand=1)
+# [[ Style Definitions ]] {{{2
 
+style = ttk.Style()
+
+# Button with conditional rendering
+style.configure(
+    "TButton",
+    font="Arial 42",
+    relief="flat",
+    borderwidth=3,
+    background="#c5b4ac",
+    foreground="#070605",
+)
+
+style.map(
+    "TButton",
+    background=[
+        ("active", "!pressed", "#7ba392"),
+        ("pressed", "!disabled", "#415e42"),
+    ],
+    foreground=[("active", "#f0ecea")],
+)
+
+# Text frame
+style.configure(
+    "TLabel",
+    font="Arial 72",
+    background="#27221A",
+    foreground="#f0ecea",
+)
+
+# }}}2
+
+# Create button and apply style
+button = ttk.Button(
+    root,
+    text="NEXT",
+    padding=5,
+)
+
+name = tkinter.StringVar()
+name.set("START")
+label = ttk.Label(root, textvariable=name)
+
+label.pack(expand=1)
+button.pack(side="bottom", padx=25, pady=25)
 
 # Close program on Q press
-root.bind("<Key>", lambda event: event.keysym == "q" and root.destroy())
+root.bind("<Key-q>", lambda _: root.destroy())
+
+# }}}1
 
 root.mainloop()
-
-# }}}
