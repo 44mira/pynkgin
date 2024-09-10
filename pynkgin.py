@@ -46,3 +46,18 @@ if not NAMES.exists():
 
 # }}}
 
+# [[ GUI Initialization ]] {{{
+
+root = tkinter.Tk()
+
+button = ttk.Button(root, text="Click me!")
+button.pack(expand=1)
+
+sv_ttk.set_theme("dark")
+
+# Close program on Q press
+root.bind("<Key>", lambda event: event.keysym == "q" and root.destroy())
+
+root.mainloop()
+
+# }}}
