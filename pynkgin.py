@@ -14,8 +14,11 @@ parser = argparse.ArgumentParser(
         """
         A GUI program that cycles through a circular buffer of names.
 
-        The queue can be advanced using the 'NEXT' button or pressing 'Enter' or 'Space' keys.
-        The program can be closed by pressing the 'Q' key.
+        The queue can be moved: 
+        - forward using the 'NEXT' button or pressing 'Enter' or 'Space' keys.
+        - back using the 'PREVIOUS' button or pressing 'Backspace' key.
+
+        The program can be exited by pressing the 'Q' key.
         """
     ),
     epilog="github.com/44mira/pynkgin",
